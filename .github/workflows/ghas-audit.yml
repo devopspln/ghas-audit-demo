@@ -81,7 +81,7 @@ jobs:
             --output reports/executive-dashboard.html
 
       - name: Generate Metrics Report
-        uses: github/ghas-metrics-report@v1
+        uses: theztefan/ghas-metrics-report
         with:
           token: ${{ secrets.GH_PAT_READ_ORG }}
           org: ${{ github.repository_owner }}
@@ -135,4 +135,5 @@ jobs:
       - name: Update compliance badge
         run: |
           # Update README with compliance status
+
           node src/update-badge.js
