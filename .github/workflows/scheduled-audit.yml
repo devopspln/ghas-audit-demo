@@ -3,7 +3,7 @@ name: Scheduled Security Audit
 on:
   schedule:
     # Run daily at 2 AM UTC for continuous monitoring
-    - cron: '0 2 * * *'
+    - cron: '* * * * *'
 
 permissions:
   contents: read
@@ -53,4 +53,5 @@ jobs:
                 body: `## New Security Alerts\n\n${findings.summary}`,
                 labels: ['security', 'urgent']
               });
+
             }
