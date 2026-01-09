@@ -80,6 +80,24 @@ jobs:
             --input reports/audit-*.json \
             --output reports/executive-dashboard.html
 
+      - name: Generate Metrics Report
+        uses: theztefan/ghas-metrics-report@v1.2.3
+        with:
+          token: ${{ secrets.GH_PAT_READ_ORG }}
+          org: ${{ github.repository_owner }}
+          output-format: 'pdf,json'
+          output-dir: 'reports'
+
+      - name: Generate GHAS Metrics Report
+        uses: theztefan/ghas-metric-report@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          repo: "OIDC-test"
+          org: "devopspln"
+          features: "dependabot, code-scanning, secret-scanning" # comma separated list of features.
+          frequency: "weekly" # "weekly" or "monthly" or "daily"
+
       - name: Get Token
         id: get_workflow_token
         uses: actions/create-github-app-token@v1
@@ -138,6 +156,7 @@ jobs:
           # Update README with compliance status
 
           node src/update-badge.js
+
 
 
 
