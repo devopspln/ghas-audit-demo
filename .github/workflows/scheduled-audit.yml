@@ -2,7 +2,7 @@ name: Scheduled Security Audit
 
 on:
   schedule:
-    # Run daily at 2 AM UTC for continuous monitoring
+    # Run every minute sleep
     - cron: '* * * * *'
 
 permissions:
@@ -55,3 +55,4 @@ jobs:
               });
 
             }
+
