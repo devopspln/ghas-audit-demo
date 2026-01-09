@@ -80,6 +80,15 @@ jobs:
             --input reports/audit-*.json \
             --output reports/executive-dashboard.html
 
+      - name: Get Token
+        id: get_workflow_token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.APPLICATION_ID }}
+          private-key: ${{ secrets.APPLICATION_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: ${{ github.event.repository.name }}
+
       - name: Generate Metrics Report
         uses: theztefan/ghas-metrics-report@v1.2.3
         with:
@@ -147,4 +156,5 @@ jobs:
           # Update README with compliance status
 
           node src/update-badge.js
+
 
